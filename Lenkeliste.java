@@ -1,3 +1,4 @@
+import java.util.Iterator;
 abstract class Lenkeliste<T> implements Liste<T> { 
     protected Node foerste = null;
 
@@ -52,13 +53,45 @@ abstract class Lenkeliste<T> implements Liste<T> {
         return s;
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new LenkelisteIterator();
+    }
+
     protected class Node {
         Node neste = null;
         T data;
         public Node(T x) {
             data = x;
         }
+    }
 
+    protected class LenkelisteIterator implements Iterator<T> {
+        //int indeks = 0
+        Node node = foerste;
+        public boolean hasNext() {
+            return node != null;
+        }
+
+        public T next() {
+            T x = node.data;
+            node = node.neste;
+            return x;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Koe<Integer> l = new Koe<>();
+
+        l.leggTil(1);
+        l.leggTil(2);
+        l.leggTil(3);
+        l.leggTil(4);
+        l.leggTil(5);
+
+        for (int tall : l) {
+            System.out.println(tall);
+        }
     }
 
 }
