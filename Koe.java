@@ -1,1 +1,3 @@
-class Koe<T> extends Lenkeliste<T> {}
+class Koe<T> extends Lenkeliste<T> {
+    
+}
